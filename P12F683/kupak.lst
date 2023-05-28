@@ -1,0 +1,1096 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.71a build 6446 
+                                                                                               Sat Nov 26 18:22:36 2016
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 6446
+     1                           	processor	12F683
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	idataBANK0,global,class=CODE,delta=2
+     6                           	psect	cinit,global,class=CODE,delta=2
+     7                           	psect	bssBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+    10                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+    11                           	psect	maintext,global,class=CODE,delta=2
+    12                           	psect	text116,local,class=CODE,delta=2
+    13                           	psect	text117,local,class=CODE,delta=2
+    14                           	psect	text118,local,class=CODE,delta=2
+    15                           	psect	text119,local,class=CODE,delta=2
+    16                           	psect	intentry,global,class=CODE,delta=2
+    17                           	psect	text120,local,class=CODE,delta=2
+    18                           	psect	pa_nodes,global,class=CODE,delta=2
+    19                           	dabs	1,0x7E,2
+    20  000A                     	;#
+    21                           
+    22                           	psect	config
+    23  2007  31A4               	dw	12708	;#
+    24                           
+    25                           	psect	idataBANK0
+    26  0000                     __pidataBANK0:	
+    27  001F                     _ADCON0	set	31
+    28  0015                     _CCP1CON	set	21
+    29  0019                     _CMCON0	set	25
+    30  0005                     _GPIO	set	5
+    31  000B                     _INTCON	set	11
+    32  0012                     _T2CON	set	18
+    33  005F                     _GIE	set	95
+    34  005B                     _GPIE	set	91
+    35  0058                     _GPIF	set	88
+    36  0028                     _GPIO0	set	40
+    37  0029                     _GPIO1	set	41
+    38  002A                     _GPIO2	set	42
+    39  005E                     _PEIE	set	94
+    40  0061                     _TMR2IF	set	97
+    41  009F                     _ANSEL	set	159
+    42  009B                     _EEADR	set	155
+    43  009D                     _EECON2	set	157
+    44  009A                     _EEDATA	set	154
+    45  0096                     _IOC	set	150
+    46  008F                     _OSCCON	set	143
+    47  0090                     _OSCTUNE	set	144
+    48  008E                     _PCON	set	142
+    49  0092                     _PR2	set	146
+    50  0085                     _TRISIO	set	133
+    51  040F                     _GPPU	set	1039
+    52  04E0                     _RD	set	1248
+    53  0461                     _TMR2IE	set	1121
+    54  04AC                     _WPU4	set	1196
+    55  04E1                     _WR	set	1249
+    56  04E2                     _WREN	set	1250
+    57                           
+    58                           	psect	cinit
+    59  0127                     start_initialization:	
+    60                           
+    61                           ; Clear objects allocated to BANK0
+    62  0127  01AF               	clrf	__pbssBANK0& (0+127)
+    63  0128  01B0               	clrf	(__pbssBANK0+1)& (0+127)
+    64  0129  01B1               	clrf	(__pbssBANK0+2)& (0+127)
+    65  012A  01B2               	clrf	(__pbssBANK0+3)& (0+127)
+    66  012B  01B3               	clrf	(__pbssBANK0+4)& (0+127)
+    67                           
+    68                           ;initializer for main@PERC
+    69  012C  303C               	movlw	60
+    70  012D  00A0               	movwf	__pdataBANK0& (0+127)
+    71  012E  01A1               	clrf	(__pdataBANK0+1)& (0+127)
+    72  012F  3008               	movlw	8
+    73  0130  00A2               	movwf	(__pdataBANK0+2)& (0+127)
+    74  0131  3007               	movlw	7
+    75  0132  00A3               	movwf	(__pdataBANK0+3)& (0+127)
+    76  0133  308C               	movlw	140
+    77  0134  00A4               	movwf	(__pdataBANK0+4)& (0+127)
+    78  0135  300A               	movlw	10
+    79  0136  00A5               	movwf	(__pdataBANK0+5)& (0+127)
+    80  0137  3010               	movlw	16
+    81  0138  00A6               	movwf	(__pdataBANK0+6)& (0+127)
+    82  0139  300E               	movlw	14
+    83  013A  00A7               	movwf	(__pdataBANK0+7)& (0+127)
+    84  013B                     end_of_initialization:	
+    85                           ;End of C runtime variable initialization code
+    86                           
+    87  013B  0183               	clrf	3
+    88  013C  280B               	ljmp	_main	;jump to C main() function
+    89                           
+    90                           	psect	bssBANK0
+    91  002F                     __pbssBANK0:	
+    92  002F                     _mpmero:	
+    93  002F                     	ds	2
+    94  0031                     _jelzes:	
+    95  0031                     	ds	1
+    96  0032                     _start:	
+    97  0032                     	ds	1
+    98  0033                     _timer2count:	
+    99  0033                     	ds	1
+   100                           
+   101                           	psect	dataBANK0
+   102  0020                     __pdataBANK0:	
+   103  0020                     main@PERC:	
+   104  0020                     	ds	8
+   105                           
+   106                           	psect	cstackCOMMON
+   107  0070                     __pcstackCOMMON:	
+   108  0070                     ?_EepromWrite:	
+   109  0070                     ?_main:	
+   110                           ; 0 bytes @ 0x0
+   111                           
+   112  0070                     ??_isr:	
+   113                           ; 0 bytes @ 0x0
+   114                           
+   115  0070                     ?_isr:	
+   116                           ; 0 bytes @ 0x0
+   117                           
+   118                           
+   119                           ; 2 bytes @ 0x0
+   120  0070                     	ds	2
+   121  0072                     ?_BEEP:	
+   122  0072                     ??_EepromWrite:	
+   123                           ; 0 bytes @ 0x2
+   124                           
+   125  0072                     ?_EepromRead:	
+   126                           ; 0 bytes @ 0x2
+   127                           
+   128  0072                     BEEP@hossz:	
+   129                           ; 2 bytes @ 0x2
+   130                           
+   131  0072                     EepromWrite@adat:	
+   132                           ; 1 bytes @ 0x2
+   133                           
+   134                           
+   135                           ; 1 bytes @ 0x2
+   136  0072                     	ds	1
+   137  0073                     ??_BEEP:	
+   138                           
+   139                           ; 0 bytes @ 0x3
+   140  0073                     	ds	1
+   141  0074                     ??_EepromRead:	
+   142  0074                     EepromRead@result:	
+   143                           ; 0 bytes @ 0x4
+   144                           
+   145                           
+   146                           ; 2 bytes @ 0x4
+   147  0074                     	ds	2
+   148  0076                     BEEP@hany:	
+   149                           
+   150                           ; 1 bytes @ 0x6
+   151  0076                     	ds	1
+   152  0077                     BEEP@i:	
+   153                           
+   154                           ; 2 bytes @ 0x7
+   155  0077                     	ds	2
+   156  0079                     BEEP@y:	
+   157                           
+   158                           ; 1 bytes @ 0x9
+   159  0079                     	ds	1
+   160                           
+   161                           	psect	cstackBANK0
+   162  0028                     __pcstackBANK0:	
+   163  0028                     ??_main:	
+   164                           
+   165                           ; 0 bytes @ 0x0
+   166  0028                     	ds	3
+   167  002B                     _main$225:	
+   168                           
+   169                           ; 2 bytes @ 0x3
+   170  002B                     	ds	2
+   171  002D                     main@OFF_TIMER:	
+   172                           
+   173                           ; 1 bytes @ 0x5
+   174  002D                     	ds	1
+   175  002E                     main@LEVEL:	
+   176                           
+   177                           ; 1 bytes @ 0x6
+   178  002E                     	ds	1
+   179                           
+   180                           	psect	maintext
+   181  000B                     __pmaintext:	
+   182 ;;Data sizes: Strings 0, constant 0, data 8, bss 5, persistent 0 stack 0
+   183 ;;Auto spaces:   Size  Autos    Used
+   184 ;; COMMON          14     10      10
+   185 ;; BANK0           80      7      20
+   186 ;; BANK1           32      0       0
+   187 ;;
+   188 ;; Pointer list with targets:
+   189 ;; ?_EepromRead	unsigned short  size(1) Largest target is 0
+   190 ;;
+   191 ;;
+   192 ;; Critical Paths under _main in COMMON
+   193 ;;
+   194 ;;   _main->_BEEP
+   195 ;;
+   196 ;; Critical Paths under _isr in COMMON
+   197 ;;
+   198 ;;   None.
+   199 ;;
+   200 ;; Critical Paths under _main in BANK0
+   201 ;;
+   202 ;;   None.
+   203 ;;
+   204 ;; Critical Paths under _isr in BANK0
+   205 ;;
+   206 ;;   None.
+   207 ;;
+   208 ;; Critical Paths under _main in BANK1
+   209 ;;
+   210 ;;   None.
+   211 ;;
+   212 ;; Critical Paths under _isr in BANK1
+   213 ;;
+   214 ;;   None.
+   215 ;;
+   216 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   217 ;;
+   218 ;;
+   219 ;;Call Graph Tables:
+   220 ;;
+   221 ;; ---------------------------------------------------------------------------------
+   222 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   223 ;; ---------------------------------------------------------------------------------
+   224 ;; (0) _main                                                 9     9      0     367
+   225 ;;                                              0 BANK0      7     7      0
+   226 ;;                         _EepromRead
+   227 ;;                               _BEEP
+   228 ;;                        _EepromWrite
+   229 ;; ---------------------------------------------------------------------------------
+   230 ;; (1) _BEEP                                                 8     7      1      92
+   231 ;;                                              2 COMMON     8     7      1
+   232 ;; ---------------------------------------------------------------------------------
+   233 ;; (1) _EepromWrite                                          1     1      0      22
+   234 ;;                                              2 COMMON     1     1      0
+   235 ;; ---------------------------------------------------------------------------------
+   236 ;; (1) _EepromRead                                           4     2      2      23
+   237 ;;                                              2 COMMON     4     2      2
+   238 ;; ---------------------------------------------------------------------------------
+   239 ;; Estimated maximum stack depth 1
+   240 ;; ---------------------------------------------------------------------------------
+   241 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   242 ;; ---------------------------------------------------------------------------------
+   243 ;; (2) _isr                                                  2     2      0       0
+   244 ;;                                              0 COMMON     2     2      0
+   245 ;; ---------------------------------------------------------------------------------
+   246 ;; Estimated maximum stack depth 2
+   247 ;; ---------------------------------------------------------------------------------
+   248 ;; Call Graph Graphs:
+   249 ;; _main (ROOT)
+   250 ;;   _EepromRead
+   251 ;;   _BEEP
+   252 ;;   _EepromWrite
+   253 ;;
+   254 ;; _isr (ROOT)
+   255 ;;
+   256 ;; Address spaces:
+   257 ;;Name               Size   Autos  Total    Cost      Usage
+   258 ;;SFR1                 0      0       0       2        0.0%
+   259 ;;BITSFR1              0      0       0       2        0.0%
+   260 ;;BANK1               20      0       0       5        0.0%
+   261 ;;BITBANK1            20      0       0       7        0.0%
+   262 ;;CODE                 0      0       0       0        0.0%
+   263 ;;DATA                 0      0      1F       8        0.0%
+   264 ;;ABS                  0      0      1E       6        0.0%
+   265 ;;NULL                 0      0       0       0        0.0%
+   266 ;;STACK                0      0       1       2        0.0%
+   267 ;;BANK0               50      7      14       4       25.0%
+   268 ;;BITBANK0            50      0       0       3        0.0%
+   269 ;;SFR0                 0      0       0       1        0.0%
+   270 ;;BITSFR0              0      0       0       1        0.0%
+   271 ;;COMMON               E      A       A       1       71.4%
+   272 ;;BITCOMMON            E      0       0       0        0.0%
+   273 ;;EEDATA             100      0       0       0        0.0%
+   274                           
+   275                           
+   276 ;; *************** function _main *****************
+   277 ;; Defined at:
+   278 ;;		line 30 in file "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+   279 ;; Parameters:    Size  Location     Type
+   280 ;;		None
+   281 ;; Auto vars:     Size  Location     Type
+   282 ;;  LEVEL           1    6[BANK0 ] unsigned char 
+   283 ;;  OFF_TIMER       1    5[BANK0 ] unsigned char 
+   284 ;;  y               1    0        unsigned char 
+   285 ;;  i               1    0        unsigned char 
+   286 ;; Return value:  Size  Location     Type
+   287 ;;		None               void
+   288 ;; Registers used:
+   289 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   290 ;; Tracked objects:
+   291 ;;		On entry : 17F/0
+   292 ;;		On exit  : 0/0
+   293 ;;		Unchanged: 0/0
+   294 ;; Data sizes:     COMMON   BANK0   BANK1
+   295 ;;      Params:         0       0       0
+   296 ;;      Locals:         0       4       0
+   297 ;;      Temps:          0       3       0
+   298 ;;      Totals:         0       7       0
+   299 ;;Total ram usage:        7 bytes
+   300 ;; Hardware stack levels required when called:    2
+   301 ;; This function calls:
+   302 ;;		_EepromRead
+   303 ;;		_BEEP
+   304 ;;		_EepromWrite
+   305 ;; This function is called by:
+   306 ;;		Startup code after reset
+   307 ;; This function uses a non-reentrant model
+   308 ;;
+   309  000B                     _main:	
+   310                           
+   311                           ;main.c: 36: unsigned char LEVEL;
+   312                           ;main.c: 37: static unsigned int PERC[4] = {60, 1800, 2700, 3600};
+   313                           ;main.c: 39: OSCCON = 0b01110001;
+   314                           
+   315                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   316  000B  3071               	movlw	113
+   317  000C  1683               	bsf	3,5	;RP0=1, select bank1
+   318  000D  008F               	movwf	15	;volatile
+   319                           
+   320                           ;main.c: 40: OSCTUNE = 0b00001111;
+   321  000E  300F               	movlw	15
+   322  000F  0090               	movwf	16	;volatile
+   323                           
+   324                           ;main.c: 41: TRISIO = 0b00000001;
+   325  0010  3001               	movlw	1
+   326  0011  0085               	movwf	5	;volatile
+   327                           
+   328                           ;main.c: 42: GPIO = 0b00000000;
+   329  0012  1283               	bcf	3,5	;RP0=0, select bank0
+   330  0013  0185               	clrf	5	;volatile
+   331                           
+   332                           ;main.c: 43: CCP1CON = 0;
+   333  0014  0195               	clrf	21	;volatile
+   334                           
+   335                           ;main.c: 44: CMCON0 = 7;
+   336  0015  3007               	movlw	7
+   337  0016  0099               	movwf	25	;volatile
+   338                           
+   339                           ;main.c: 45: ADCON0 = 0;
+   340  0017  019F               	clrf	31	;volatile
+   341                           
+   342                           ;main.c: 46: ANSEL = 0;
+   343  0018  1683               	bsf	3,5	;RP0=1, select bank1
+   344  0019  019F               	clrf	31	;volatile
+   345                           
+   346                           ;main.c: 47: GPPU = 1;
+   347  001A  1781               	bsf	1,7
+   348                           
+   349                           ;main.c: 48: WPU4 = 1;
+   350  001B  1615               	bsf	21,4
+   351                           
+   352                           ;main.c: 49: INTCON = 0;
+   353  001C  018B               	clrf	11	;volatile
+   354                           
+   355                           ;main.c: 50: PEIE = 1;
+   356  001D  170B               	bsf	11,6
+   357                           
+   358                           ;main.c: 51: GIE = 1;
+   359  001E  178B               	bsf	11,7
+   360                           
+   361                           ;main.c: 54: PCON = 0b0010000;
+   362  001F  3010               	movlw	16
+   363  0020  008E               	movwf	14	;volatile
+   364                           
+   365                           ;main.c: 60: PR2 = 137;
+   366  0021  3089               	movlw	137
+   367  0022  0092               	movwf	18	;volatile
+   368                           
+   369                           ;main.c: 61: T2CON = 0b01001111;
+   370  0023  304F               	movlw	79
+   371  0024  1283               	bcf	3,5	;RP0=0, select bank0
+   372  0025  0092               	movwf	18	;volatile
+   373                           
+   374                           ;main.c: 62: TMR2IE = 0;
+   375  0026  1683               	bsf	3,5	;RP0=1, select bank1
+   376  0027  108C               	bcf	12,1
+   377                           
+   378                           ;main.c: 63: PEIE = 1;
+   379  0028  170B               	bsf	11,6
+   380                           
+   381                           ;main.c: 64: GIE = 1;
+   382  0029  178B               	bsf	11,7
+   383                           
+   384                           ;main.c: 66: LEVEL = EepromRead();
+   385  002A  214E               	fcall	_EepromRead
+   386  002B  0872               	movf	?_EepromRead,w
+   387  002C  1283               	bcf	3,5	;RP0=0, select bank0
+   388  002D  00AE               	movwf	main@LEVEL
+   389                           
+   390                           ;main.c: 67: LEVEL = LEVEL>0&&LEVEL<255?LEVEL:1;
+   391  002E  01AB               	clrf	_main$225
+   392  002F  0AAB               	incf	_main$225,f
+   393  0030  01AC               	clrf	_main$225+1
+   394  0031  082E               	movf	main@LEVEL,w
+   395  0032  1903               	btfsc	3,2
+   396  0033  283B               	goto	l374
+   397  0034  082E               	movf	main@LEVEL,w
+   398  0035  3AFF               	xorlw	255
+   399  0036  1903               	skipnz
+   400  0037  283B               	goto	l374
+   401  0038  082E               	movf	main@LEVEL,w
+   402  0039  00AB               	movwf	_main$225
+   403  003A  01AC               	clrf	_main$225+1
+   404  003B                     l374:	
+   405  003B  082B               	movf	_main$225,w
+   406  003C  00AE               	movwf	main@LEVEL
+   407                           
+   408                           ;main.c: 68: GPIO1 = 1;
+   409  003D  1485               	bsf	5,1
+   410                           
+   411                           ;main.c: 69: BEEP(1, 255);
+   412  003E  30FF               	movlw	255
+   413  003F  00F2               	movwf	?_BEEP
+   414  0040  3001               	movlw	1
+   415  0041  20CE               	fcall	_BEEP
+   416                           
+   417                           ;main.c: 70: GPIO1 = 0;
+   418  0042  1283               	bcf	3,5	;RP0=0, select bank0
+   419  0043  1085               	bcf	5,1
+   420  0044                     l1106:	
+   421                           
+   422                           ;main.c: 74: if(!start){
+   423  0044  1283               	bcf	3,5	;RP0=0, select bank0
+   424  0045  08B2               	movf	_start,f
+   425  0046  1D03               	skipz
+   426  0047  2854               	goto	l1114
+   427                           
+   428                           ;main.c: 75: if(!GPIO0){
+   429  0048  1805               	btfsc	5,0
+   430  0049  2897               	goto	l1156
+   431  004A                     l378:	
+   432  004A  1C05               	btfss	5,0
+   433  004B  284A               	goto	l378
+   434                           
+   435                           ;main.c: 77: start=1;
+   436  004C  01B2               	clrf	_start
+   437  004D  0AB2               	incf	_start,f
+   438                           
+   439                           ;main.c: 78: TMR2IE = 1;
+   440  004E  1683               	bsf	3,5	;RP0=1, select bank1
+   441  004F  148C               	bsf	12,1
+   442                           
+   443                           ;main.c: 79: BEEP(2, 100);
+   444  0050  3064               	movlw	100
+   445  0051  00F2               	movwf	?_BEEP
+   446  0052  3002               	movlw	2
+   447  0053  2896               	goto	L1
+   448  0054                     l1114:	
+   449  0054  0832               	movf	_start,w
+   450  0055  1D03               	skipz
+   451                           
+   452                           ;main.c: 82: if(!GPIO0){
+   453  0056  1805               	btfsc	5,0
+   454  0057  2897               	goto	l1156
+   455                           
+   456                           ;main.c: 83: OFF_TIMER=0;
+   457  0058  01AD               	clrf	main@OFF_TIMER
+   458  0059                     l1144:	
+   459                           ;main.c: 84: while(!GPIO0){
+   460                           
+   461  0059  1805               	btfsc	5,0
+   462  005A  2885               	goto	l1146
+   463                           
+   464                           ;main.c: 85: OFF_TIMER++;
+   465  005B  0AAD               	incf	main@OFF_TIMER,f
+   466                           
+   467                           ;main.c: 86: _delay((unsigned long)((100)*(8000000/4000.0)));
+   468  005C  3002               	movlw	2
+   469  005D  00AA               	movwf	??_main+2
+   470  005E  3003               	movlw	3
+   471  005F  00A9               	movwf	??_main+1
+   472  0060  30BA               	movlw	186
+   473  0061  00A8               	movwf	??_main
+   474  0062                     u397:	
+   475  0062  0BA8               	decfsz	??_main,f
+   476  0063  2862               	goto	u397
+   477  0064  0BA9               	decfsz	??_main+1,f
+   478  0065  2862               	goto	u397
+   479  0066  0BAA               	decfsz	??_main+2,f
+   480  0067  2862               	goto	u397
+   481                           
+   482                           ;main.c: 87: if(OFF_TIMER>50){
+   483  0068  3033               	movlw	51
+   484  0069  1283               	bcf	3,5	;RP0=0, select bank0
+   485  006A  022D               	subwf	main@OFF_TIMER,w
+   486  006B  1C03               	skipc
+   487  006C  2859               	goto	l1144
+   488                           
+   489                           ;main.c: 88: OFF_TIMER=0;
+   490  006D  01AD               	clrf	main@OFF_TIMER
+   491                           
+   492                           ;main.c: 89: start=0;
+   493  006E  01B2               	clrf	_start
+   494                           
+   495                           ;main.c: 90: TMR2IE = 0;
+   496  006F  1683               	bsf	3,5	;RP0=1, select bank1
+   497  0070  108C               	bcf	12,1
+   498                           
+   499                           ;main.c: 91: timer2count=0;
+   500  0071  1283               	bcf	3,5	;RP0=0, select bank0
+   501  0072  01B3               	clrf	_timer2count
+   502                           
+   503                           ;main.c: 92: mpmero=0;
+   504  0073  01AF               	clrf	_mpmero	;volatile
+   505  0074  01B0               	clrf	_mpmero+1	;volatile
+   506                           
+   507                           ;main.c: 93: EepromWrite (LEVEL);
+   508  0075  082E               	movf	main@LEVEL,w
+   509  0076  213D               	fcall	_EepromWrite
+   510                           
+   511                           ;main.c: 94: BEEP(5, 100);
+   512  0077  3064               	movlw	100
+   513  0078  00F2               	movwf	?_BEEP
+   514  0079  3005               	movlw	5
+   515  007A  20CE               	fcall	_BEEP
+   516                           
+   517                           ;main.c: 95: IOC = 0x01;
+   518  007B  3001               	movlw	1
+   519  007C  1683               	bsf	3,5	;RP0=1, select bank1
+   520  007D  0096               	movwf	22	;volatile
+   521                           
+   522                           ;main.c: 96: GPIE = 1;
+   523  007E  158B               	bsf	11,3
+   524                           
+   525                           ;main.c: 97: GPIF = 0;
+   526  007F  100B               	bcf	11,0
+   527                           
+   528                           ;main.c: 98: TRISIO = 0x01;
+   529  0080  0085               	movwf	5	;volatile
+   530                           
+   531                           ;main.c: 99: GPIO = 0;
+   532  0081  1283               	bcf	3,5	;RP0=0, select bank0
+   533  0082  0185               	clrf	5	;volatile
+   534  0083  0063               	sleep	;#
+   535  0084  2859               	goto	l1144
+   536  0085                     l1146:	
+   537                           
+   538                           ;main.c: 101: }
+   539                           ;main.c: 102: }
+   540                           ;main.c: 103: if(start){
+   541  0085  0832               	movf	_start,w
+   542  0086  1903               	btfsc	3,2
+   543  0087  2897               	goto	l1156
+   544                           
+   545                           ;main.c: 104: if(LEVEL<4){
+   546  0088  3004               	movlw	4
+   547  0089  022E               	subwf	main@LEVEL,w
+   548  008A  1803               	skipnc
+   549  008B  2891               	goto	l389
+   550                           
+   551                           ;main.c: 105: LEVEL++;
+   552  008C  0AAE               	incf	main@LEVEL,f
+   553                           
+   554                           ;main.c: 106: BEEP(LEVEL, 100);
+   555  008D  3064               	movlw	100
+   556  008E  00F2               	movwf	?_BEEP
+   557  008F  082E               	movf	main@LEVEL,w
+   558  0090  2896               	goto	L1
+   559  0091                     l389:	
+   560                           ;main.c: 107: }else{
+   561                           
+   562                           
+   563                           ;main.c: 108: LEVEL=1;
+   564  0091  01AE               	clrf	main@LEVEL
+   565  0092  0AAE               	incf	main@LEVEL,f
+   566                           
+   567                           ;main.c: 109: BEEP(LEVEL, 100);
+   568  0093  3064               	movlw	100
+   569  0094  00F2               	movwf	?_BEEP
+   570  0095  3001               	movlw	1
+   571  0096                     L1:	
+   572  0096  20CE               	fcall	_BEEP
+   573  0097                     l1156:	
+   574                           
+   575                           ;main.c: 110: }
+   576                           ;main.c: 112: }
+   577                           ;main.c: 113: }
+   578                           ;main.c: 114: }
+   579                           ;main.c: 117: if(PERC[LEVEL-1]<mpmero){
+   580  0097  1283               	bcf	3,5	;RP0=0, select bank0
+   581  0098  1003               	clrc
+   582  0099  0D2E               	rlf	main@LEVEL,w
+   583  009A  3E1E               	addlw	(main@PERC+-2)& (0+255)
+   584  009B  0084               	movwf	4
+   585  009C  1383               	bcf	3,7	;select IRP bank0
+   586  009D  0800               	movf	0,w
+   587  009E  00A8               	movwf	??_main
+   588  009F  0A84               	incf	4,f
+   589  00A0  0800               	movf	0,w
+   590  00A1  00A9               	movwf	??_main+1
+   591  00A2  0830               	movf	_mpmero+1,w	;volatile
+   592  00A3  0229               	subwf	??_main+1,w
+   593  00A4  1D03               	skipz
+   594  00A5  28A8               	goto	u375
+   595  00A6  082F               	movf	_mpmero,w	;volatile
+   596  00A7  0228               	subwf	??_main,w
+   597  00A8                     u375:	
+   598  00A8  1803               	skipnc
+   599  00A9  28AC               	goto	l1160
+   600                           
+   601                           ;main.c: 118: mpmero=0;
+   602  00AA  01AF               	clrf	_mpmero	;volatile
+   603  00AB  01B0               	clrf	_mpmero+1	;volatile
+   604  00AC                     l1160:	
+   605                           
+   606                           ;main.c: 119: }
+   607                           ;main.c: 120: if(jelzes){
+   608  00AC  0831               	movf	_jelzes,w
+   609  00AD  1903               	btfsc	3,2
+   610  00AE  28C4               	goto	l1172
+   611                           
+   612                           ;main.c: 121: GPIO1=1;
+   613  00AF  1485               	bsf	5,1
+   614                           
+   615                           ;main.c: 122: BEEP(1, 100);
+   616  00B0  3064               	movlw	100
+   617  00B1  00F2               	movwf	?_BEEP
+   618  00B2  3001               	movlw	1
+   619  00B3  20CE               	fcall	_BEEP
+   620                           
+   621                           ;main.c: 123: _delay((unsigned long)((100)*(8000000/4000.0)));
+   622  00B4  3002               	movlw	2
+   623  00B5  1283               	bcf	3,5	;RP0=0, select bank0
+   624  00B6  00AA               	movwf	??_main+2
+   625  00B7  3003               	movlw	3
+   626  00B8  00A9               	movwf	??_main+1
+   627  00B9  30BA               	movlw	186
+   628  00BA  00A8               	movwf	??_main
+   629  00BB                     u407:	
+   630  00BB  0BA8               	decfsz	??_main,f
+   631  00BC  28BB               	goto	u407
+   632  00BD  0BA9               	decfsz	??_main+1,f
+   633  00BE  28BB               	goto	u407
+   634  00BF  0BAA               	decfsz	??_main+2,f
+   635  00C0  28BB               	goto	u407
+   636                           
+   637                           ;main.c: 124: GPIO1=0;
+   638  00C1  1283               	bcf	3,5	;RP0=0, select bank0
+   639  00C2  1085               	bcf	5,1
+   640                           
+   641                           ;main.c: 125: jelzes=0;
+   642  00C3  01B1               	clrf	_jelzes
+   643  00C4                     l1172:	
+   644                           
+   645                           ;main.c: 126: }
+   646                           ;main.c: 127: _delay((unsigned long)((10)*(8000000/4000.0)));
+   647  00C4  301A               	movlw	26
+   648  00C5  00A9               	movwf	??_main+1
+   649  00C6  30F8               	movlw	248
+   650  00C7  00A8               	movwf	??_main
+   651  00C8                     u417:	
+   652  00C8  0BA8               	decfsz	??_main,f
+   653  00C9  28C8               	goto	u417
+   654  00CA  0BA9               	decfsz	??_main+1,f
+   655  00CB  28C8               	goto	u417
+   656  00CC  0064               	clrwdt
+   657  00CD  2844               	goto	l1106
+   658  00CE                     __end_of_main:	
+   659                           
+   660                           	psect	text116
+   661  00CE                     __ptext116:	
+   662 ;; =============== function _main ends ============
+   663                           
+   664                           
+   665 ;; *************** function _BEEP *****************
+   666 ;; Defined at:
+   667 ;;		line 157 in file "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+   668 ;; Parameters:    Size  Location     Type
+   669 ;;  hany            1    wreg     unsigned char 
+   670 ;;  hossz           1    2[COMMON] unsigned char 
+   671 ;; Auto vars:     Size  Location     Type
+   672 ;;  hany            1    6[COMMON] unsigned char 
+   673 ;;  i               2    7[COMMON] unsigned short 
+   674 ;;  y               1    9[COMMON] unsigned char 
+   675 ;; Return value:  Size  Location     Type
+   676 ;;		None               void
+   677 ;; Registers used:
+   678 ;;		wreg, status,2, status,0
+   679 ;; Tracked objects:
+   680 ;;		On entry : 0/0
+   681 ;;		On exit  : 0/0
+   682 ;;		Unchanged: 0/0
+   683 ;; Data sizes:     COMMON   BANK0   BANK1
+   684 ;;      Params:         1       0       0
+   685 ;;      Locals:         4       0       0
+   686 ;;      Temps:          3       0       0
+   687 ;;      Totals:         8       0       0
+   688 ;;Total ram usage:        8 bytes
+   689 ;; Hardware stack levels used:    1
+   690 ;; Hardware stack levels required when called:    1
+   691 ;; This function calls:
+   692 ;;		Nothing
+   693 ;; This function is called by:
+   694 ;;		_main
+   695 ;; This function uses a non-reentrant model
+   696 ;;
+   697  00CE                     _BEEP:	
+   698                           
+   699                           ; Regs used in _BEEP: [wreg+status,2+status,0]
+   700                           ;BEEP@hany stored from wreg
+   701  00CE  00F6               	movwf	BEEP@hany
+   702                           
+   703                           ;main.c: 158: unsigned short i;
+   704                           ;main.c: 159: unsigned char y;
+   705                           ;main.c: 160: for(y=0; y<hany; y++){
+   706  00CF  01F9               	clrf	BEEP@y
+   707  00D0                     l1054:	
+   708  00D0  0876               	movf	BEEP@hany,w
+   709  00D1  0279               	subwf	BEEP@y,w
+   710  00D2  1803               	btfsc	3,0
+   711  00D3  0008               	return
+   712                           
+   713                           ;main.c: 161: for(i=0; i<hossz; i++){
+   714  00D4  01F7               	clrf	BEEP@i
+   715  00D5  01F8               	clrf	BEEP@i+1
+   716  00D6                     l1048:	
+   717  00D6  0872               	movf	BEEP@hossz,w
+   718  00D7  00F3               	movwf	??_BEEP
+   719  00D8  01F4               	clrf	??_BEEP+1
+   720  00D9  0874               	movf	??_BEEP+1,w
+   721  00DA  0278               	subwf	BEEP@i+1,w
+   722  00DB  1D03               	skipz
+   723  00DC  28DF               	goto	u245
+   724  00DD  0873               	movf	??_BEEP,w
+   725  00DE  0277               	subwf	BEEP@i,w
+   726  00DF                     u245:	
+   727  00DF  1803               	btfsc	3,0
+   728  00E0  28ED               	goto	l409
+   729                           
+   730                           ;main.c: 162: _delay((unsigned long)((100)*(8000000/4000000.0)));
+   731  00E1  3042               	movlw	66
+   732  00E2  00F3               	movwf	??_BEEP
+   733  00E3                     u427:	
+   734  00E3  0BF3               	decfsz	??_BEEP,f
+   735  00E4  28E3               	goto	u427
+   736  00E5  0064               	clrwdt
+   737                           
+   738                           ;main.c: 163: GPIO2=!GPIO2;
+   739  00E6  3004               	movlw	4
+   740  00E7  1283               	bcf	3,5	;RP0=0, select bank0
+   741  00E8  0685               	xorwf	5,f
+   742  00E9  0AF7               	incf	BEEP@i,f
+   743  00EA  1903               	skipnz
+   744  00EB  0AF8               	incf	BEEP@i+1,f
+   745  00EC  28D6               	goto	l1048
+   746  00ED                     l409:	
+   747                           
+   748                           ;main.c: 164: }
+   749                           ;main.c: 165: GPIO2=0;
+   750  00ED  1283               	bcf	3,5	;RP0=0, select bank0
+   751  00EE  1105               	bcf	5,2
+   752                           
+   753                           ;main.c: 166: _delay((unsigned long)((100)*(8000000/4000.0)));
+   754  00EF  3002               	movlw	2
+   755  00F0  00F5               	movwf	??_BEEP+2
+   756  00F1  3003               	movlw	3
+   757  00F2  00F4               	movwf	??_BEEP+1
+   758  00F3  30BA               	movlw	186
+   759  00F4  00F3               	movwf	??_BEEP
+   760  00F5                     u437:	
+   761  00F5  0BF3               	decfsz	??_BEEP,f
+   762  00F6  28F5               	goto	u437
+   763  00F7  0BF4               	decfsz	??_BEEP+1,f
+   764  00F8  28F5               	goto	u437
+   765  00F9  0BF5               	decfsz	??_BEEP+2,f
+   766  00FA  28F5               	goto	u437
+   767  00FB  0AF9               	incf	BEEP@y,f
+   768  00FC  28D0               	goto	l1054
+   769  00FD                     __end_of_BEEP:	
+   770                           
+   771                           	psect	text117
+   772  013D                     __ptext117:	
+   773 ;; =============== function _BEEP ends ============
+   774                           
+   775                           
+   776 ;; *************** function _EepromWrite *****************
+   777 ;; Defined at:
+   778 ;;		line 196 in file "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+   779 ;; Parameters:    Size  Location     Type
+   780 ;;  adat            1    wreg     unsigned char 
+   781 ;; Auto vars:     Size  Location     Type
+   782 ;;  adat            1    2[COMMON] unsigned char 
+   783 ;; Return value:  Size  Location     Type
+   784 ;;		None               void
+   785 ;; Registers used:
+   786 ;;		wreg, status,2
+   787 ;; Tracked objects:
+   788 ;;		On entry : 20/0
+   789 ;;		On exit  : 20/20
+   790 ;;		Unchanged: FFFDF/0
+   791 ;; Data sizes:     COMMON   BANK0   BANK1
+   792 ;;      Params:         0       0       0
+   793 ;;      Locals:         1       0       0
+   794 ;;      Temps:          0       0       0
+   795 ;;      Totals:         1       0       0
+   796 ;;Total ram usage:        1 bytes
+   797 ;; Hardware stack levels used:    1
+   798 ;; Hardware stack levels required when called:    1
+   799 ;; This function calls:
+   800 ;;		Nothing
+   801 ;; This function is called by:
+   802 ;;		_main
+   803 ;; This function uses a non-reentrant model
+   804 ;;
+   805  013D                     _EepromWrite:	
+   806                           
+   807                           ; Regs used in _EepromWrite: [wreg+status,2]
+   808                           ;EepromWrite@adat stored from wreg
+   809  013D  00F2               	movwf	EepromWrite@adat
+   810                           
+   811                           ;main.c: 197: EEADR = 0;
+   812  013E  1683               	bsf	3,5	;RP0=1, select bank1
+   813  013F  019B               	clrf	27	;volatile
+   814                           
+   815                           ;main.c: 198: EEDATA = adat;
+   816  0140  0872               	movf	EepromWrite@adat,w
+   817  0141  009A               	movwf	26	;volatile
+   818                           
+   819                           ;main.c: 199: WREN = 1;
+   820  0142  151C               	bsf	28,2
+   821                           
+   822                           ;main.c: 200: GIE = 0;
+   823  0143  138B               	bcf	11,7
+   824                           
+   825                           ;main.c: 201: EECON2 = 0x55;
+   826  0144  3055               	movlw	85
+   827  0145  009D               	movwf	29	;volatile
+   828                           
+   829                           ;main.c: 202: EECON2 = 0xAA;
+   830  0146  30AA               	movlw	170
+   831  0147  009D               	movwf	29	;volatile
+   832                           
+   833                           ;main.c: 203: WR = 1;
+   834  0148  149C               	bsf	28,1
+   835  0149                     l426:	
+   836                           ;main.c: 204: while (WR == 1);
+   837                           
+   838  0149  189C               	btfsc	28,1
+   839  014A  2949               	goto	l426
+   840                           
+   841                           ;main.c: 205: GIE = 1;
+   842  014B  178B               	bsf	11,7
+   843                           
+   844                           ;main.c: 206: WREN = 0;
+   845  014C  111C               	bcf	28,2
+   846  014D  0008               	return
+   847  014E                     __end_of_EepromWrite:	
+   848                           
+   849                           	psect	text118
+   850  014E                     __ptext118:	
+   851 ;; =============== function _EepromWrite ends ============
+   852                           
+   853                           
+   854 ;; *************** function _EepromRead *****************
+   855 ;; Defined at:
+   856 ;;		line 185 in file "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+   857 ;; Parameters:    Size  Location     Type
+   858 ;;		None
+   859 ;; Auto vars:     Size  Location     Type
+   860 ;;  result          2    4[COMMON] unsigned short 
+   861 ;; Return value:  Size  Location     Type
+   862 ;;                  2    2[COMMON] unsigned short 
+   863 ;; Registers used:
+   864 ;;		wreg, status,2
+   865 ;; Tracked objects:
+   866 ;;		On entry : 17F/20
+   867 ;;		On exit  : 17F/20
+   868 ;;		Unchanged: FFE80/0
+   869 ;; Data sizes:     COMMON   BANK0   BANK1
+   870 ;;      Params:         2       0       0
+   871 ;;      Locals:         2       0       0
+   872 ;;      Temps:          0       0       0
+   873 ;;      Totals:         4       0       0
+   874 ;;Total ram usage:        4 bytes
+   875 ;; Hardware stack levels used:    1
+   876 ;; Hardware stack levels required when called:    1
+   877 ;; This function calls:
+   878 ;;		Nothing
+   879 ;; This function is called by:
+   880 ;;		_main
+   881 ;; This function uses a non-reentrant model
+   882 ;;
+   883  014E                     _EepromRead:	
+   884                           
+   885                           ;main.c: 186: unsigned short result;
+   886                           ;main.c: 187: EEADR = 0;
+   887                           
+   888                           ; Regs used in _EepromRead: [wreg+status,2]
+   889  014E  019B               	clrf	27	;volatile
+   890                           
+   891                           ;main.c: 188: RD = 1;
+   892  014F  141C               	bsf	28,0
+   893                           
+   894                           ;main.c: 189: result = EEDATA;
+   895  0150  081A               	movf	26,w	;volatile
+   896  0151  00F4               	movwf	EepromRead@result
+   897  0152  01F5               	clrf	EepromRead@result+1
+   898                           
+   899                           ;main.c: 190: return result;
+   900  0153  0875               	movf	EepromRead@result+1,w
+   901  0154  00F3               	movwf	?_EepromRead+1
+   902  0155  0874               	movf	EepromRead@result,w
+   903  0156  00F2               	movwf	?_EepromRead
+   904  0157  0008               	return
+   905  0158                     __end_of_EepromRead:	
+   906                           
+   907                           	psect	text119
+   908  00FD                     __ptext119:	
+   909 ;; =============== function _EepromRead ends ============
+   910                           
+   911                           
+   912 ;; *************** function _isr *****************
+   913 ;; Defined at:
+   914 ;;		line 132 in file "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+   915 ;; Parameters:    Size  Location     Type
+   916 ;;		None
+   917 ;; Auto vars:     Size  Location     Type
+   918 ;;		None
+   919 ;; Return value:  Size  Location     Type
+   920 ;;                  2  397[COMMON] int 
+   921 ;; Registers used:
+   922 ;;		wreg, status,2, status,0
+   923 ;; Tracked objects:
+   924 ;;		On entry : 0/0
+   925 ;;		On exit  : 20/0
+   926 ;;		Unchanged: FFFDF/0
+   927 ;; Data sizes:     COMMON   BANK0   BANK1
+   928 ;;      Params:         0       0       0
+   929 ;;      Locals:         0       0       0
+   930 ;;      Temps:          2       0       0
+   931 ;;      Totals:         2       0       0
+   932 ;;Total ram usage:        2 bytes
+   933 ;; Hardware stack levels used:    1
+   934 ;; This function calls:
+   935 ;;		Nothing
+   936 ;; This function is called by:
+   937 ;;		Interrupt level 1
+   938 ;; This function uses a non-reentrant model
+   939 ;;
+   940  00FD                     _isr:	
+   941                           
+   942                           ;main.c: 133: if(GPIF == 1){
+   943  00FD  1C0B               	btfss	11,0
+   944  00FE  290C               	goto	i1l1026
+   945                           
+   946                           ;main.c: 135: PCON = 0b0010000;
+   947  00FF  3010               	movlw	16
+   948  0100  1683               	bsf	3,5	;RP0=1, select bank1
+   949  0101  008E               	movwf	14	;volatile
+   950                           
+   951                           ;main.c: 136: GPIF = 0;
+   952  0102  100B               	bcf	11,0
+   953                           
+   954                           ;main.c: 137: PCON = 0x00;
+   955  0103  018E               	clrf	14	;volatile
+   956                           
+   957                           ;main.c: 138: GPIE = 0;
+   958  0104  118B               	bcf	11,3
+   959                           
+   960                           ;main.c: 139: IOC = 0;
+   961  0105  0196               	clrf	22	;volatile
+   962                           
+   963                           ;main.c: 140: TRISIO = 0x01;
+   964  0106  3001               	movlw	1
+   965  0107  0085               	movwf	5	;volatile
+   966                           
+   967                           ;main.c: 141: GPIO = 0;
+   968  0108  1283               	bcf	3,5	;RP0=0, select bank0
+   969  0109  0185               	clrf	5	;volatile
+   970  010A  0000               	nop	;#
+   971                           
+   972                           ;main.c: 143: }else{
+   973  010B  2920               	goto	i1l402
+   974  010C                     i1l1026:	
+   975                           
+   976                           ;main.c: 144: if(timer2count>99){
+   977  010C  3064               	movlw	100
+   978  010D  1283               	bcf	3,5	;RP0=0, select bank0
+   979  010E  0233               	subwf	_timer2count,w
+   980  010F  1C03               	skipc
+   981  0110  291E               	goto	i1l1036
+   982                           
+   983                           ;main.c: 148: timer2count = 0;
+   984  0111  01B3               	clrf	_timer2count
+   985                           
+   986                           ;main.c: 149: mpmero++;
+   987  0112  0AAF               	incf	_mpmero,f	;volatile
+   988  0113  1903               	skipnz
+   989  0114  0AB0               	incf	_mpmero+1,f	;volatile
+   990                           
+   991                           ;main.c: 150: if(mpmero<11){ jelzes=1; }
+   992  0115  3000               	movlw	0
+   993  0116  0230               	subwf	_mpmero+1,w	;volatile
+   994  0117  300B               	movlw	11
+   995  0118  1903               	skipnz
+   996  0119  022F               	subwf	_mpmero,w	;volatile
+   997  011A  1803               	skipnc
+   998  011B  291E               	goto	i1l1036
+   999  011C  01B1               	clrf	_jelzes
+  1000  011D  0AB1               	incf	_jelzes,f
+  1001  011E                     i1l1036:	
+  1002                           
+  1003                           ;main.c: 151: }
+  1004                           ;main.c: 152: timer2count++;
+  1005  011E  0AB3               	incf	_timer2count,f
+  1006                           
+  1007                           ;main.c: 153: TMR2IF = 0;
+  1008  011F  108C               	bcf	12,1
+  1009  0120                     i1l402:	
+  1010  0120  0871               	movf	??_isr+1,w
+  1011  0121  008A               	movwf	10
+  1012  0122  0870               	movf	??_isr,w
+  1013  0123  0083               	movwf	3
+  1014  0124  0EFE               	swapf	126,f
+  1015  0125  0E7E               	swapf	126,w
+  1016  0126  0009               	retfie
+  1017  0127                     __end_of_isr:	
+  1018                           
+  1019                           	psect	intentry
+  1020  0004                     __pintentry:	
+  1021                           ; Regs used in _isr: [wreg+status,2+status,0]
+  1022                           
+  1023  0004                     interrupt_function:	
+  1024  007E                     saved_w	set	btemp
+  1025  0004  00FE               	movwf	btemp
+  1026  0005  0803               	movf	3,w
+  1027  0006  00F0               	movwf	??_isr
+  1028  0007  080A               	movf	10,w
+  1029  0008  00F1               	movwf	??_isr+1
+  1030  0009  28FD               	ljmp	_isr
+  1031                           
+  1032                           	psect	text120
+  1033  0000                     __ptext120:	
+  1034 ;; =============== function _isr ends ============
+  1035                           
+  1036  007E                     btemp	set	126	;btemp
+  1037  007E                     wtemp0	set	126
+
+
+HI-TECH Software PICC Macro Assembler V9.71a build 6446 
+Symbol Table                                                                                   Sat Nov 26 18:22:36 2016
+
+                  _RD 04E0                    _WR 04E1                   l411 0000                   l423 0000  
+                 l409 00ED                   l426 0149                   l429 0000                   l374 003B  
+                 l378 004A                   l389 0091                   l990 0000                   l992 0000  
+                 l986 0000                   _GIE 005F                   l988 0000                   l996 0000  
+                 l998 0000                   _IOC 0096                   u245 00DF                   _PR2 0092  
+                 u407 00BB                   u417 00C8                   u427 00E3                   u437 00F5  
+                 u375 00A8                   u397 0062                   _isr 00FD                   fsr0 0004  
+                 indf 0000                  l1000 0000                  l1002 0000                  l1004 0000  
+                l1100 0000                  l1006 0000                  l1102 0000                  l1008 0000  
+                l1040 0000                  l1112 0000                  l1104 0000                  l1050 0000  
+                l1130 0000                  l1122 0000                  l1114 0054                  l1106 0044  
+                l1052 0000                  l1140 0000                  l1132 0000                  l1124 0000  
+                l1116 0000                  l1060 0000                  l1046 0000                  l1054 00D0  
+                l1142 0000                  l1134 0000                  l1070 0000                  l1062 0000  
+                l1048 00D6                  l1160 00AC                  l1152 0000                  l1136 0000  
+                l1128 0000                  l1144 0059                  l1080 0000                  l1072 0000  
+                l1064 0000                  l1056 0000                  l1170 0000                  l1162 0000  
+                l1154 0000                  l1146 0085                  l1138 0000                  l1090 0000  
+                l1082 0000                  l1074 0000                  l1066 0000                  l1058 0000  
+                l1164 0000                  l1172 00C4                  l1148 0000                  l1156 0097  
+                l1092 0000                  l1084 0000                  l1076 0000                  l1068 0000  
+                l1166 0000                  l1094 0000                  l1086 0000                  l1078 0000  
+                l1168 0000                  l1096 0000                  l1088 0000                  ?_isr 0070  
+                _BEEP 00CE                  _GPIE 005B                  _GPIF 0058                  _GPIO 0005  
+                _PEIE 005E                  _GPPU 040F                  _PCON 008E                  _WPU4 04AC  
+                _WREN 04E2                  _main 000B                  btemp 007E                  start 000A  
+ __end_of_EepromWrite 014E                 BEEP@i 0077                 BEEP@y 0079                 ??_isr 0070  
+               ?_BEEP 0072                 ?_main 0070                 _EEADR 009B                 _ANSEL 009F  
+          _EepromRead 014E                 _T2CON 0012                 _GPIO0 0028                 _GPIO1 0029  
+               _GPIO2 002A                 i1l402 0120                 _start 0032                 pclath 000A  
+               status 0003                 wtemp0 007E          __end_of_BEEP 00FD          __end_of_main 00CE  
+              ??_BEEP 0073                ??_main 0028                _ADCON0 001F             BEEP@hossz 0072  
+              _EEDATA 009A                _EECON2 009D                _CMCON0 0019                i1l1010 0000  
+              i1l1020 0000                i1l1030 0000                i1l1022 0000                i1l1014 0000  
+              i1l1032 0000                i1l1024 0000                i1l1016 0000                i1l1018 0000  
+              i1l1026 010C                i1l1036 011E                i1l1038 0000                _INTCON 000B  
+         _EepromWrite 013D                _OSCCON 008F                _TMR2IE 0461                _TMR2IF 0061  
+              _TRISIO 0085                _jelzes 0031                _mpmero 002F           ?_EepromRead 0072  
+              saved_w 007E        __pcstackCOMMON 0070          __pidataBANK0 0000            __pbssBANK0 002F  
+ __size_of_EepromRead 000A            __pmaintext 000B            __pintentry 0004               _CCP1CON 0015  
+             _OSCTUNE 0090          __size_of_isr 002A  end_of_initialization 013B          ?_EepromWrite 0070  
+        ??_EepromRead 0074      EepromRead@result 0074    __end_of_EepromRead 0158   start_initialization 0127  
+         __end_of_isr 0127              BEEP@hany 0076           __pdataBANK0 0020         __pcstackBANK0 0028  
+__size_of_EepromWrite 0011             __ptext120 0000             __ptext116 00CE             __ptext117 013D  
+           __ptext118 014E             __ptext119 00FD     interrupt_function 0004             main@LEVEL 002E  
+            _main$225 002B         __size_of_BEEP 002F         __size_of_main 00C3              main@PERC 0020  
+     EepromWrite@adat 0072              intlevel1 0000         main@OFF_TIMER 002D           _timer2count 0033  
+       ??_EepromWrite 0072  

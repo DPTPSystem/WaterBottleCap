@@ -1,0 +1,491 @@
+
+# 1 "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+
+# 15 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\pic12f683.h"
+volatile unsigned char INDF @ 0x00;
+volatile unsigned char TMR0 @ 0x01;
+volatile unsigned char PCL @ 0x02;
+volatile unsigned char STATUS @ 0x03;
+volatile unsigned char FSR @ 0x04;
+volatile unsigned char GPIO @ 0x05;
+volatile unsigned char PCLATH @ 0x0A;
+volatile unsigned char INTCON @ 0x0B;
+volatile unsigned char PIR1 @ 0x0C;
+volatile unsigned char TMR1L @ 0x0E;
+volatile unsigned char TMR1H @ 0x0F;
+volatile unsigned char T1CON @ 0x10;
+volatile unsigned char TMR2 @ 0x11;
+volatile unsigned char T2CON @ 0x12;
+volatile unsigned char CCPR1L @ 0x13;
+volatile unsigned char CCPR1H @ 0x14;
+volatile unsigned char CCP1CON @ 0x15;
+volatile unsigned char WDTCON @ 0x18;
+volatile unsigned char CMCON0 @ 0x19;
+volatile unsigned char CMCON1 @ 0x1A;
+volatile unsigned char ADRESH @ 0x1E;
+volatile unsigned char ADCON0 @ 0x1F;
+volatile unsigned char OPTION @ 0x81;
+volatile unsigned char TRISIO @ 0x85;
+volatile unsigned char PIE1 @ 0x8C;
+volatile unsigned char PCON @ 0x8E;
+volatile unsigned char OSCCON @ 0x8F;
+volatile unsigned char OSCTUNE @ 0x90;
+volatile unsigned char PR2 @ 0x92;
+volatile unsigned char WPU @ 0x95;
+volatile unsigned char IOC @ 0x96;
+volatile unsigned char VRCON @ 0x99;
+volatile unsigned char EEDAT @ 0x9A;
+
+volatile unsigned char EEDATA @ 0x9A;
+volatile unsigned char EEADR @ 0x9B;
+
+volatile unsigned char EEADRL @ 0x9B;
+volatile unsigned char EECON1 @ 0x9C;
+volatile unsigned char EECON2 @ 0x9D;
+volatile unsigned char ADRESL @ 0x9E;
+volatile unsigned char ANSEL @ 0x9F;
+
+
+
+volatile bit CARRY @ ((unsigned)&STATUS*8)+0;
+volatile bit DC @ ((unsigned)&STATUS*8)+1;
+volatile bit ZERO @ ((unsigned)&STATUS*8)+2;
+volatile bit PD @ ((unsigned)&STATUS*8)+3;
+volatile bit TO @ ((unsigned)&STATUS*8)+4;
+volatile bit RP0 @ ((unsigned)&STATUS*8)+5;
+volatile bit RP1 @ ((unsigned)&STATUS*8)+6;
+volatile bit IRP @ ((unsigned)&STATUS*8)+7;
+
+
+volatile bit GPIO0 @ ((unsigned)&GPIO*8)+0;
+volatile bit GPIO1 @ ((unsigned)&GPIO*8)+1;
+volatile bit GPIO2 @ ((unsigned)&GPIO*8)+2;
+volatile bit GPIO3 @ ((unsigned)&GPIO*8)+3;
+volatile bit GPIO4 @ ((unsigned)&GPIO*8)+4;
+volatile bit GPIO5 @ ((unsigned)&GPIO*8)+5;
+
+
+volatile bit GPIF @ ((unsigned)&INTCON*8)+0;
+volatile bit INTF @ ((unsigned)&INTCON*8)+1;
+volatile bit T0IF @ ((unsigned)&INTCON*8)+2;
+volatile bit GPIE @ ((unsigned)&INTCON*8)+3;
+volatile bit INTE @ ((unsigned)&INTCON*8)+4;
+volatile bit T0IE @ ((unsigned)&INTCON*8)+5;
+volatile bit PEIE @ ((unsigned)&INTCON*8)+6;
+volatile bit GIE @ ((unsigned)&INTCON*8)+7;
+
+
+volatile bit TMR1IF @ ((unsigned)&PIR1*8)+0;
+volatile bit TMR2IF @ ((unsigned)&PIR1*8)+1;
+volatile bit OSFIF @ ((unsigned)&PIR1*8)+2;
+volatile bit CMIF @ ((unsigned)&PIR1*8)+3;
+volatile bit CCP1IF @ ((unsigned)&PIR1*8)+5;
+volatile bit ADIF @ ((unsigned)&PIR1*8)+6;
+volatile bit EEIF @ ((unsigned)&PIR1*8)+7;
+
+
+volatile bit TMR1ON @ ((unsigned)&T1CON*8)+0;
+volatile bit TMR1CS @ ((unsigned)&T1CON*8)+1;
+volatile bit T1SYNC @ ((unsigned)&T1CON*8)+2;
+volatile bit T1OSCEN @ ((unsigned)&T1CON*8)+3;
+volatile bit T1CKPS0 @ ((unsigned)&T1CON*8)+4;
+volatile bit T1CKPS1 @ ((unsigned)&T1CON*8)+5;
+volatile bit T1GE @ ((unsigned)&T1CON*8)+6;
+volatile bit T1GINV @ ((unsigned)&T1CON*8)+7;
+
+
+volatile bit T2CKPS0 @ ((unsigned)&T2CON*8)+0;
+volatile bit T2CKPS1 @ ((unsigned)&T2CON*8)+1;
+volatile bit TMR2ON @ ((unsigned)&T2CON*8)+2;
+volatile bit TOUTPS0 @ ((unsigned)&T2CON*8)+3;
+volatile bit TOUTPS1 @ ((unsigned)&T2CON*8)+4;
+volatile bit TOUTPS2 @ ((unsigned)&T2CON*8)+5;
+volatile bit TOUTPS3 @ ((unsigned)&T2CON*8)+6;
+
+
+volatile bit CCP1M0 @ ((unsigned)&CCP1CON*8)+0;
+volatile bit CCP1M1 @ ((unsigned)&CCP1CON*8)+1;
+volatile bit CCP1M2 @ ((unsigned)&CCP1CON*8)+2;
+volatile bit CCP1M3 @ ((unsigned)&CCP1CON*8)+3;
+volatile bit DC1B0 @ ((unsigned)&CCP1CON*8)+4;
+volatile bit DC1B1 @ ((unsigned)&CCP1CON*8)+5;
+
+
+volatile bit SWDTEN @ ((unsigned)&WDTCON*8)+0;
+volatile bit WDTPS0 @ ((unsigned)&WDTCON*8)+1;
+volatile bit WDTPS1 @ ((unsigned)&WDTCON*8)+2;
+volatile bit WDTPS2 @ ((unsigned)&WDTCON*8)+3;
+volatile bit WDTPS3 @ ((unsigned)&WDTCON*8)+4;
+
+
+volatile bit CM0 @ ((unsigned)&CMCON0*8)+0;
+volatile bit CM1 @ ((unsigned)&CMCON0*8)+1;
+volatile bit CM2 @ ((unsigned)&CMCON0*8)+2;
+volatile bit CIS @ ((unsigned)&CMCON0*8)+3;
+volatile bit CINV @ ((unsigned)&CMCON0*8)+4;
+volatile bit COUT @ ((unsigned)&CMCON0*8)+6;
+
+
+volatile bit CMSYNC @ ((unsigned)&CMCON1*8)+0;
+volatile bit T1GSS @ ((unsigned)&CMCON1*8)+1;
+
+
+volatile bit ADON @ ((unsigned)&ADCON0*8)+0;
+volatile bit GODONE @ ((unsigned)&ADCON0*8)+1;
+volatile bit CHS0 @ ((unsigned)&ADCON0*8)+2;
+volatile bit CHS1 @ ((unsigned)&ADCON0*8)+3;
+volatile bit CHS2 @ ((unsigned)&ADCON0*8)+4;
+volatile bit VCFG @ ((unsigned)&ADCON0*8)+6;
+volatile bit ADFM @ ((unsigned)&ADCON0*8)+7;
+
+
+volatile bit PS0 @ ((unsigned)&OPTION*8)+0;
+volatile bit PS1 @ ((unsigned)&OPTION*8)+1;
+volatile bit PS2 @ ((unsigned)&OPTION*8)+2;
+volatile bit PSA @ ((unsigned)&OPTION*8)+3;
+volatile bit T0SE @ ((unsigned)&OPTION*8)+4;
+volatile bit T0CS @ ((unsigned)&OPTION*8)+5;
+volatile bit INTEDG @ ((unsigned)&OPTION*8)+6;
+volatile bit GPPU @ ((unsigned)&OPTION*8)+7;
+
+
+volatile bit TRISIO0 @ ((unsigned)&TRISIO*8)+0;
+volatile bit TRISIO1 @ ((unsigned)&TRISIO*8)+1;
+volatile bit TRISIO2 @ ((unsigned)&TRISIO*8)+2;
+volatile bit TRISIO3 @ ((unsigned)&TRISIO*8)+3;
+volatile bit TRISIO4 @ ((unsigned)&TRISIO*8)+4;
+volatile bit TRISIO5 @ ((unsigned)&TRISIO*8)+5;
+
+
+volatile bit TMR1IE @ ((unsigned)&PIE1*8)+0;
+volatile bit TMR2IE @ ((unsigned)&PIE1*8)+1;
+volatile bit OSFIE @ ((unsigned)&PIE1*8)+2;
+volatile bit CMIE @ ((unsigned)&PIE1*8)+3;
+volatile bit CCP1IE @ ((unsigned)&PIE1*8)+5;
+volatile bit ADIE @ ((unsigned)&PIE1*8)+6;
+volatile bit EEIE @ ((unsigned)&PIE1*8)+7;
+
+
+volatile bit BOD @ ((unsigned)&PCON*8)+0;
+volatile bit POR @ ((unsigned)&PCON*8)+1;
+volatile bit SBODEN @ ((unsigned)&PCON*8)+4;
+volatile bit ULPWUE @ ((unsigned)&PCON*8)+5;
+
+
+volatile bit SCS @ ((unsigned)&OSCCON*8)+0;
+volatile bit LTS @ ((unsigned)&OSCCON*8)+1;
+volatile bit HTS @ ((unsigned)&OSCCON*8)+2;
+volatile bit OSTS @ ((unsigned)&OSCCON*8)+3;
+volatile bit IRCF0 @ ((unsigned)&OSCCON*8)+4;
+volatile bit IRCF1 @ ((unsigned)&OSCCON*8)+5;
+volatile bit IRCF2 @ ((unsigned)&OSCCON*8)+6;
+
+
+volatile bit TUN0 @ ((unsigned)&OSCTUNE*8)+0;
+volatile bit TUN1 @ ((unsigned)&OSCTUNE*8)+1;
+volatile bit TUN2 @ ((unsigned)&OSCTUNE*8)+2;
+volatile bit TUN3 @ ((unsigned)&OSCTUNE*8)+3;
+volatile bit TUN4 @ ((unsigned)&OSCTUNE*8)+4;
+
+
+volatile bit WPU0 @ ((unsigned)&WPU*8)+0;
+volatile bit WPU1 @ ((unsigned)&WPU*8)+1;
+volatile bit WPU2 @ ((unsigned)&WPU*8)+2;
+volatile bit WPU3 @ ((unsigned)&WPU*8)+3;
+volatile bit WPU4 @ ((unsigned)&WPU*8)+4;
+volatile bit WPU5 @ ((unsigned)&WPU*8)+5;
+
+
+volatile bit IOC0 @ ((unsigned)&IOC*8)+0;
+volatile bit IOC1 @ ((unsigned)&IOC*8)+1;
+volatile bit IOC2 @ ((unsigned)&IOC*8)+2;
+volatile bit IOC3 @ ((unsigned)&IOC*8)+3;
+volatile bit IOC4 @ ((unsigned)&IOC*8)+4;
+volatile bit IOC5 @ ((unsigned)&IOC*8)+5;
+
+
+volatile bit VR0 @ ((unsigned)&VRCON*8)+0;
+volatile bit VR1 @ ((unsigned)&VRCON*8)+1;
+volatile bit VR2 @ ((unsigned)&VRCON*8)+2;
+volatile bit VR3 @ ((unsigned)&VRCON*8)+3;
+volatile bit VRR @ ((unsigned)&VRCON*8)+5;
+volatile bit VREN @ ((unsigned)&VRCON*8)+7;
+
+
+volatile bit RD @ ((unsigned)&EECON1*8)+0;
+volatile bit WR @ ((unsigned)&EECON1*8)+1;
+volatile bit WREN @ ((unsigned)&EECON1*8)+2;
+volatile bit WRERR @ ((unsigned)&EECON1*8)+3;
+
+
+volatile bit ANS0 @ ((unsigned)&ANSEL*8)+0;
+volatile bit ANS1 @ ((unsigned)&ANSEL*8)+1;
+volatile bit ANS2 @ ((unsigned)&ANSEL*8)+2;
+volatile bit ANS3 @ ((unsigned)&ANSEL*8)+3;
+volatile bit ADCS0 @ ((unsigned)&ANSEL*8)+4;
+volatile bit ADCS1 @ ((unsigned)&ANSEL*8)+5;
+volatile bit ADCS2 @ ((unsigned)&ANSEL*8)+6;
+
+
+# 499 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\pic.h"
+#pragma inline(_nop)
+extern void _nop(void);
+
+# 41 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\eeprom_routines.h"
+extern void eeprom_write(unsigned char addr, unsigned char value);
+extern unsigned char eeprom_read(unsigned char addr);
+
+
+# 625 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\pic.h"
+#pragma inline(_delay)
+extern void _delay(unsigned long);
+
+# 12 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\stdio.h"
+typedef int ptrdiff_t;
+typedef unsigned size_t;
+typedef unsigned short wchar_t;
+
+# 31 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\stdarg.h"
+typedef void * va_list[1];
+
+#pragma inline(__va_start)
+extern void * __va_start(void);
+
+#pragma inline(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 27 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\stdio.h"
+extern int errno;
+
+# 58
+struct __prbuf
+{
+char * ptr;
+void (* func)(char);
+};
+
+# 17 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\conio.h"
+extern int errno;
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern bit kbhit(void);
+
+# 31
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 103 "C:\Program Files (x86)\HI-TECH Software\PICC\9.71a\include\stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+# 195
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...);
+extern int sscanf(const char *, const char *, ...);
+extern int vprintf(const char *, va_list);
+extern int vsprintf(char *, const char *, va_list);
+extern int vscanf(const char *, va_list ap);
+extern int vsscanf(const char *, const char *, va_list);
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+
+# 1 "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\header.h"
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0x37FF & 0x3BFF & 0x3DFF & 0x3FBF & 0x3FBF & 0x3FFF & 0x3FEF & 0x3FF7 & 0x3FFC");
+
+# 19 "C:\Users\DPTP\Dropbox\PIC_Programozas\P12F683\szentkiralyi_kupak\main.c"
+unsigned char timer2count = 0;
+volatile unsigned short mpmero = 0;
+unsigned char start = 0;
+unsigned char jelzes=0;
+
+void main(void);
+void BEEP(unsigned char hany, unsigned char hossz);
+void BEEP2(unsigned char hany, unsigned char hossz);
+unsigned short EepromRead (void);
+void EepromWrite (unsigned char adat);
+
+void main(void){
+unsigned char i,y;
+unsigned char OFF_TIMER=0;
+
+# 36
+unsigned char LEVEL;
+static unsigned int PERC[4] = {60, 1800, 2700, 3600};
+
+OSCCON = 0b01110001;
+OSCTUNE = 0b00001111;
+TRISIO = 0b00000001;
+GPIO = 0b00000000;
+CCP1CON = 0;
+CMCON0 = 7;
+ADCON0 = 0;
+ANSEL = 0;
+GPPU = 1;
+WPU4 = 1;
+INTCON = 0;
+PEIE = 1;
+GIE = 1;
+
+
+PCON = 0b0010000;
+
+# 60
+PR2 = 137;
+T2CON = 0b01001111;
+TMR2IE = 0;
+PEIE = 1;
+GIE = 1;
+
+LEVEL = EepromRead();
+LEVEL = LEVEL>0&&LEVEL<255?LEVEL:1;
+GPIO1 = 1;
+BEEP(1, 255);
+GPIO1 = 0;
+
+while (1){
+
+if(!start){
+if(!GPIO0){
+while(!GPIO0);
+start=1;
+TMR2IE = 1;
+BEEP(2, 100);
+}
+}else if(start){
+if(!GPIO0){
+OFF_TIMER=0;
+while(!GPIO0){
+OFF_TIMER++;
+_delay((unsigned long)((100)*(8000000/4000.0)));
+if(OFF_TIMER>50){
+OFF_TIMER=0;
+start=0;
+TMR2IE = 0;
+timer2count=0;
+mpmero=0;
+EepromWrite (LEVEL);
+BEEP(5, 100);
+IOC = 0x01;
+GPIE = 1;
+GPIF = 0;
+TRISIO = 0x01;
+GPIO = 0;
+asm("SLEEP");
+}
+}
+if(start){
+if(LEVEL<4){
+LEVEL++;
+BEEP(LEVEL, 100);
+}else{
+LEVEL=1;
+BEEP(LEVEL, 100);
+}
+
+}
+}
+}
+
+
+if(PERC[LEVEL-1]<mpmero){
+mpmero=0;
+}
+if(jelzes){
+GPIO1=1;
+BEEP(1, 100);
+_delay((unsigned long)((100)*(8000000/4000.0)));
+GPIO1=0;
+jelzes=0;
+}
+_delay((unsigned long)((10)*(8000000/4000.0)));
+}
+}
+
+
+extern interrupt isr(void){
+if(GPIF == 1){
+
+PCON = 0b0010000;
+GPIF = 0;
+PCON = 0x00;
+GPIE = 0;
+IOC = 0;
+TRISIO = 0x01;
+GPIO = 0;
+asm("NOP");
+}else{
+if(timer2count>99){
+
+
+
+timer2count = 0;
+mpmero++;
+if(mpmero<11){ jelzes=1; }
+}
+timer2count++;
+TMR2IF = 0;
+}
+}
+
+void BEEP(unsigned char hany, unsigned char hossz){
+unsigned short i;
+unsigned char y;
+for(y=0; y<hany; y++){
+for(i=0; i<hossz; i++){
+_delay((unsigned long)((100)*(8000000/4000000.0)));
+GPIO2=!GPIO2;
+}
+GPIO2=0;
+_delay((unsigned long)((100)*(8000000/4000.0)));
+}
+}
+
+void BEEP2(unsigned char hany, unsigned char hossz){
+unsigned char i,y;
+for(y=0; y<hany; y++){
+GPIO2=1;
+for(i=0; i<hossz; i++){
+_delay((unsigned long)((1)*(8000000/4000.0)));
+}
+GPIO2=0;
+_delay((unsigned long)((100)*(8000000/4000.0)));
+}
+}
+
+# 185
+unsigned short EepromRead (void){
+unsigned short result;
+EEADR = 0;
+RD = 1;
+result = EEDATA;
+return result;
+}
+
+# 196
+void EepromWrite (unsigned char adat){
+EEADR = 0;
+EEDATA = adat;
+WREN = 1;
+GIE = 0;
+EECON2 = 0x55;
+EECON2 = 0xAA;
+WR = 1;
+while (WR == 1);
+GIE = 1;
+WREN = 0;
+}
