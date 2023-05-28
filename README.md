@@ -46,6 +46,7 @@ Az eszköz a gombnyomást követően az éppen aktuálisan beállított időköz
 2. 30 perc = 2 sípolás
 3. 45 perc = 3 sípolás
 4. 60 perc = 4 sípolás.
+
 A 60 perces beállított érték utáni újabb gombnyomásnál a ciklus újra kezdődik, vagy is ismét a kezdeti 15 perces2 időközi figyelmeztetés lesz érvényben.
 A program leállítható egy folyamatos minimum 5mp-ig tartó gombnyomásra, mely után az eszköz standby állapotba kerül. A standby állapotba lépést az eszköz 
 5 hosszabb hang visszajelzéssel adja tudtunkra. Újabb gombnyomásnál az eszköz felébred és az utoljára beállított időközzel, azonnal megkezdi az idő mérését.
