@@ -4,7 +4,7 @@
 * Projekt keletkezése: 2016-05-13.
 * PIC12F683, HI-TECH C for PIC10/12/16
 
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nrf8001_3.jpg "DPTP System - WBSC")
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/pcb_3.PNG "DPTP System - WBSC")
 
 # Miért
 Egy magyarországi fejlesztő csapat keresett meg egy olyan okos karorával kapcsolatos fejlesztésük keretein belül, amely többeközt a viselő 
@@ -70,22 +70,26 @@ Méretek:
 A nyák átmérője 275mm.
 Magassága: kb. 10mm, burkolati elem nélkül.
 
+# Kapcsolási rajz
+
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/sematic_1.PNG "DPTP System - WBSC")
+
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/sematic_2.PNG "DPTP System - WBSC")
+
 # Nyáktervek
 A nyáktervek SMD egyoldalas áramköri rajzolattal készültek.
 
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nRF8001.PNG "DPTP System - WBSC")
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/kupak_1.PNG "DPTP System - WBSC")
+
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/kupak_2.PNG "DPTP System - WBSC")
 
 # PCB
 
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nrf8001_1.jpg "DPTP System - WBSC")
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/pcb_1.PNG "DPTP System - WBSC")
 
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nrf8001_2.jpg "DPTP System - WBSC")
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/pcb_2.PNG "DPTP System - WBSC")
 
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nrf8001_5.jpg "DPTP System - WBSC")
-
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nrf8001_4.jpg "DPTP System - WBSC")
-
-![DPTP System - WBSC](https://github.com/DPTPSystem/nRF8001_BLE/blob/master/images/nrf8001_6.jpg "DPTP System - WBSC")
+![DPTP System - WBSC](https://github.com/DPTPSystem/WaterBottleCap/blob/master/images/pcb_3.PNG "DPTP System - WBSC")
 
 # Burkolat
 A burkolatra anyagválasztásánál többféle ötlet merült fel:
