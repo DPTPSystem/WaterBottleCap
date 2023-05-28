@@ -22,7 +22,8 @@ el. Az életkor előrehaladtával sajnos a víz aránya csökken. Ennek a csökk
 1. biztosítja a vérkeringést, a vér ozmózis nyomását;
 2. a szükséges tápanyagok oldását, felszívódását, szállítását;
 3. befolyása van a vér sav-bázis egyensúlyára;
-4. hő szabályozó szerepével biztosítja a közel állandó belső hőmérsékletét.
+4. hő szabályozó szerepével biztosítja a közel állandó belső hőmérsékletét;
+
 A felnőtt emberi szervezetnek 2-2,5 liter folyadék felvételére van szüksége naponta. Ezt a vízigényt táplálékkal és közvetlen folyadékfelvétellel 
 fedezi. A szervezet vízkészletének állandóságát egyrészt a vízfelvételre serkentő szomjúságérzés, másrészt a vízkonzerválást széles határok között 
 biztosító veseműködés teszi lehetővé. Itt jön képbe az agy és annak működése. Napi 1400 milliliter víz folyik át agyunkon és 2000 milliliter víz 
